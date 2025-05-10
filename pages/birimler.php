@@ -188,13 +188,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Helper Fonksiyonu: htmlspecialchars (JavaScript) ---
     // Data özniteliklerinden alınan veya DOM'a basılan veriyi güvence altına almak için
-    function htmlspecialchars(str) {
-        if (typeof str !== 'string' && typeof str !== 'number') { return ''; }
-        str = String(str);
-        const map = {'&': '&', '<': '<', '>': '>','<': '<', '"': '"', "'": '''};
-          // < ve > ekledim, diğerlerini sildim
-        return str.replace(/[&<>"']/g, function(m) { return map[m]; });
-    }
+function htmlspecialchars(str) {
+       if (typeof str !== 'string' && typeof str !== 'number') { return ''; }
+       str = String(str);
+       // Düzeltilmiş map objesi: Her anahtar sadece bir kere tanımlanmalı
+       const map = {'&': '&', '<': '<', '>': '>', '"': '"', "'": '''};
+       return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+   }
 
 
     // --- Modal Olay Dinleyicileri ---
