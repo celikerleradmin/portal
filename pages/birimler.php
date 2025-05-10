@@ -191,7 +191,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function htmlspecialchars(str) {
         if (typeof str !== 'string' && typeof str !== 'number') { return ''; }
         str = String(str);
-        const map = {'&': '&', '<': '<', '>': '>','<': '<', '"': '"', "'": '''}; // < ve > ekledim, diğerlerini sildim
+        const map = {'&': '&', '<': '<', '>': '>','<': '<', '"': '"', "'": '''};
+          // < ve > ekledim, diğerlerini sildim
         return str.replace(/[&<>"']/g, function(m) { return map[m]; });
     }
 

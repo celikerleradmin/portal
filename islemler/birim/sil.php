@@ -1,7 +1,7 @@
 <?php
 session_start();
 // config.php dosyasını include edin (islemler/birim/sil.php'den 3 dizin yukarıda olabilir)
-require_once dirname(__DIR__, 3) . '/config.php';
+require_once dirname(__DIR__, 2) . '/config.php';
 // Veritabanı sınıfınızın include edildiğinden ve $db objesinin tanımlı olduğundan emin olun.
 
 // Sadece POST isteklerini işle
