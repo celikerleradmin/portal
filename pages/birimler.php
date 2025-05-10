@@ -104,7 +104,7 @@ if ($birimler === false || $birimler === null) {
                         <!-- Düzenle Butonu (Birim Düzenle Modalını Tetikleyecek) -->
                         <!-- data-bs-target Birim Düzenle modalının ID'si ile eşleşmeli -->
                         <!-- data-* öznitelikleri ile birim bilgilerini modala taşıyacağız -->
-                        <a href="#" class="btn btn-icon btn-sm" aria-label="Düzenle"
+                        <a href="#" class="btn btn-icon btn-md" aria-label="Düzenle"
                             data-bs-toggle="modal" data-bs-target="#modal-birim-duzenle"
                             data-id="<?php echo htmlspecialchars($birim['id'] ?? ''); ?>"
                             data-kod="<?php echo htmlspecialchars($birim['kod'] ?? ''); ?>"
@@ -116,7 +116,7 @@ if ($birimler === false || $birimler === null) {
                         <!-- Sil Butonu (Birim Silme Onay Modalını Tetikleyecek) -->
                          <!-- data-bs-target Birim Sil modalının ID'si ile eşleşmeli -->
                          <!-- data-* öznitelikleri ile birim bilgilerini modala taşıyacağız -->
-                        <a href="#" class="btn btn-icon btn-sm text-danger btn-birim-sil" aria-label="Sil"
+                        <a href="#" class="btn btn-icon btn-md text-danger btn-birim-sil" aria-label="Sil"
                              data-bs-toggle="modal" data-bs-target="#modal-birim-sil-onay"
                              data-id="<?php echo htmlspecialchars($birim['id'] ?? ''); ?>"
                              data-adi="<?php echo htmlspecialchars($birim['adi'] ?? ''); ?>"
