@@ -1,0 +1,22 @@
+RewriteEngine On
+
+# Eğer istenen dosya bir uzantıya sahipse ve dosya gerçekten varsa, RewriteEngine'i durdur
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule \.(css|js|jpg|jpeg|png|gif|svg|woff2?|ttf|eot)$ - [L]
+
+# --- Geri kalan kurallarınız ---
+# /portal/teklifler/HERHANGI_BIR_SEGMENT isteğini yakala ve page=teklifler&filter_slug=HERHANGI_BIR_SEGMENT olarak yönlendir
+RewriteRule ^teklifler/([^/]+)/?$ index.php?page=teklifler&filter_slug=$1 [L,QSA]
+
+# Diğer özel kurallarınız...
+RewriteRule ^giris$ login.php [L,QSA]
+RewriteRule ^cikis$ logout.php [L,QSA]
+RewriteRule ^fp$ fp.php [L,QSA]
+RewriteRule ^tos$ tos.php [L,QSA]
+
+RewriteBase /portal/
+
+# Genel kural: Eğer dosya/dizin değilse (ve yukarıdaki statik dosya kuralına uymuyorsa), page=YOL olarak yönlendir
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php?page=$1 [L,QSA]
