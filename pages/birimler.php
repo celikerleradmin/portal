@@ -158,22 +158,21 @@ if ($birimler === false || $birimler === null) {
 document.addEventListener('DOMContentLoaded', function() {
 
     // --- Modal Elementleri ---
+    // Modalların sayfada include edildiğinden emin olun!
     const addModalElement = document.getElementById('modal-birim-ekle');
     const editModalElement = document.getElementById('modal-birim-duzenle');
     const deleteConfirmModalElement = document.getElementById('modal-birim-sil-onay');
 
     // --- Form Elementleri (Modal İçindeki) ---
-    // Ekleme Modalı Formu
+    // Ekleme Modalı Formu ve inputları (Ekleme modalında form resetlenecek)
     // Modalınızdaki formun ve inputların doğru ID'lerine işaret ettiğinden emin olun!
     const addForm = document.getElementById('form-birim-ekle-modal');
-    // Input elementleri için referanslara gerek yok, form.reset() yeterli
-    // Eğer modal açıldığında formu doldurmak gibi özel bir ihtiyacınız varsa ekleyebilirsiniz
-    // const addBirimKodInput = document.getElementById('birim-ekle-kod-modal');
-    // const addBirimAdiInput = document.getElementById('birim-ekle-adi-modal');
-    // const addBirimDurumSelect = document.getElementById('birim-ekle-durum-modal');
+    // const addBirimKodInput = document.getElementById('birim-ekle-kod-modal'); // Reset için referansa gerek yok
+    // const addBirimAdiInput = document.getElementById('birim-ekle-adi-modal'); // Reset için referansa gerek yok
+    // const addBirimDurumSelect = document.getElementById('birim-ekle-durum-modal'); // Reset için referansa gerek yok
 
 
-    // Düzenleme Modalı Formu
+    // Düzenleme Modalı Formu ve inputları
     // Modalınızdaki formun ve inputların doğru ID'lerine işaret ettiğinden emin olun!
     const editForm = document.getElementById('form-birim-duzenle-modal');
     const editBirimIdInput = document.getElementById('birim-duzenle-id-modal');
@@ -192,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function htmlspecialchars(str) {
         if (typeof str !== 'string' && typeof str !== 'number') { return ''; }
         str = String(str);
-        const map = {'&': '&', '<': '<', '>': '>', '"': '"', "'": '''};
+        const map = {'&': '&', '<': '<', '>': '>','<': '<', '"': '"', "'": '''}; // < ve > ekledim, diğerlerini sildim
         return str.replace(/[&<>"']/g, function(m) { return map[m]; });
     }
 
@@ -201,7 +200,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Birim Ekle Modal açıldığında formu sıfırla (Gerekirse)
     // Eğer modal her açıldığında formun temizlenmesini istiyorsanız bu eventi kullanın
-    if(addModalElement) {
+    // Bootstrap/Tabler JS modal açma/kapama eventlerini kullanırız: 'shown.bs.modal', 'hidden.bs.modal'
+    if(addModalElement) { // Modal elementi sayfada include edilmişse
         addModalElement.addEventListener('shown.bs.modal', function (event) {
             if(addForm) addForm.reset(); // Formu sıfırla
              // Modal başlığını "Yeni Birim Ekle" olarak ayarla
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Birim Düzenle Modal açıldığında formu doldur
-    if(editModalElement) {
+    if(editModalElement) { // Modal elementi sayfada include edilmişse
         editModalElement.addEventListener('shown.bs.modal', function (event) {
             const button = event.relatedTarget; // Modalı tetikleyen Düzenle butonu
 
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Birim Silme Onay Modal açıldığında içeriği doldur
-    if(deleteConfirmModalElement) {
+    if(deleteConfirmModalElement) { // Modal elementi sayfada include edilmişse
         deleteConfirmModalElement.addEventListener('shown.bs.modal', function (event) {
             const button = event.relatedTarget; // Modalı tetikleyen Sil butonu
 
@@ -267,10 +267,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Modallardaki formlar submit edildiğinde TARAYICI YÖNLENDİRME YAPACAK.
     // JavaScript sadece modal açma/kapatma ve modal içini doldurma için kullanılır.
     // Form submit olayları için özel bir JavaScript'e gerek yok, tarayıcı varsayılanı kullanır.
-    // Sadece Silme onay butonunun click olayını yakalamamız lazım.
+    // Sadece Silme onay modalındaki onay butonunun click olayını yakalamamız lazım.
 
     // Silme Onay Modalındaki Onay Butonu Olayı (Form Gönderme Yerine POST Yönlendirme)
-    if(deleteConfirmButton) {
+    if(deleteConfirmButton) { // Onay butonu sayfada include edilmişse
         deleteConfirmButton.addEventListener('click', function(e) {
             e.preventDefault(); // Butonun varsayılan davranışını engelle (link ise #'a gitmesini engeller)
 
